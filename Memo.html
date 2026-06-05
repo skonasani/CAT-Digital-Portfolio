@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CAT Digital , Infrastructure Demand Analysis Memo</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f5f5f3;color:#1a1a1a;padding:2rem}
+  .page{max-width:800px;margin:0 auto;background:#fff;border-radius:12px;border:1px solid #e5e5e2;overflow:hidden}
+  .memo-header{padding:1.5rem;border-bottom:1px solid #e5e5e2}
+  .cat-tag{display:inline-block;background:#FFCD11;color:#1A1A1A;font-size:10px;font-weight:600;padding:2px 9px;border-radius:4px;margin-bottom:10px;letter-spacing:0.04em}
+  .memo-title{font-size:20px;font-weight:700;line-height:1.35;margin-bottom:12px}
+  .meta-row{display:flex;flex-wrap:wrap;gap:16px;font-size:12px;color:#666}
+  .meta-row strong{color:#1a1a1a;font-weight:600}
+  .exec{background:#f5f5f3;padding:1.25rem 1.5rem;border-bottom:1px solid #e5e5e2}
+  .exec-label{font-size:10px;font-weight:700;color:#888;letter-spacing:0.08em;margin-bottom:8px}
+  .exec-text{font-size:13px;line-height:1.75;color:#333}
+  .body{padding:1.5rem}
+  .finding{margin-bottom:2rem;padding-bottom:2rem;border-bottom:1px solid #e5e5e2}
+  .finding:last-of-type{border-bottom:none;margin-bottom:0;padding-bottom:0}
+  .f-num{font-size:10px;font-weight:700;color:#888;letter-spacing:0.08em;margin-bottom:6px}
+  .f-title{font-size:16px;font-weight:700;margin-bottom:10px;line-height:1.35}
+  .f-body{font-size:13px;color:#444;line-height:1.75;margin-bottom:16px}
+  .stat-row{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}
+  .stat{background:#f5f5f3;border-radius:8px;padding:0.75rem 1rem;flex:1;min-width:110px}
+  .stat-val{font-size:20px;font-weight:700}
+  .stat-lbl{font-size:11px;color:#666;margin-top:2px}
+  .stat-d{font-size:11px;margin-top:2px}
+  .up{color:#3B6D11}.dn{color:#A32D2D}
+  .leg{display:flex;flex-wrap:wrap;gap:12px;font-size:11px;color:#666;margin-bottom:8px}
+  .ls{width:9px;height:9px;border-radius:2px;display:inline-block;margin-right:3px;vertical-align:middle}
+  .annot{display:flex;align-items:flex-start;gap:8px;background:#f5f5f3;border-radius:8px;padding:0.75rem 1rem;margin-top:12px;font-size:12px;color:#555;line-height:1.6}
+  .annot-icon{font-size:15px;color:#888;margin-top:1px;flex-shrink:0}
+  .rec-box{background:#fff;border:1px solid #e5e5e2;border-radius:12px;padding:1.25rem 1.5rem;margin-top:1.5rem}
+  .rec-header{font-size:14px;font-weight:700;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid #e5e5e2}
+  .rec-item{display:flex;gap:12px;margin-bottom:14px;align-items:flex-start}
+  .rec-item:last-child{margin-bottom:0}
+  .rec-num{background:#FFCD11;color:#1A1A1A;font-size:11px;font-weight:700;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+  .rec-text{font-size:13px;color:#444;line-height:1.65}
+  .rec-text strong{color:#1a1a1a;font-weight:600}
+  .footer-note{padding:1rem 1.5rem;border-top:1px solid #e5e5e2;font-size:11px;color:#888;display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="memo-header">
+    <div class="cat-tag">CAT DIGITAL · BI ANALYSIS MEMO</div>
+    <div class="memo-title">Infrastructure demand surge: opportunity mapping for CAT Digital's equipment analytics and aftermarket platform</div>
+    <div class="meta-row">
+      <span><strong>Prepared by:</strong> Sivaram Konasani</span>
+      <span><strong>Date:</strong> June 2026</span>
+      <span><strong>Audience:</strong> CAT Digital product and analytics teams</span>
+      <span><strong>Data through:</strong> Q1 2026</span>
+    </div>
+  </div>
+
+  <div class="exec">
+    <div class="exec-label">EXECUTIVE SUMMARY</div>
+    <div class="exec-text">US construction spending reached $2.09T in Q1 2026, driven by IIJA disbursements shifting from planning into active project funding across highway, bridge, and utilities programs. The infrastructure segment now represents 38.6% of total spend, its highest share in a decade, while heavy equipment demand is up 7.1% YoY. Earthmoving, CAT's highest-volume product category, leads all segments at +9.2% demand growth. Separately, average fleet utilization has dipped to 72.1%, a leading indicator that idle fleet accumulation is building near-term aftermarket parts and service contract demand. This memo maps three specific actions for CAT Digital's product and analytics teams to capture both the infrastructure tailwind and the aftermarket window before they close.</div>
+  </div>
+
+  <div class="body">
+    <div class="finding">
+      <div class="f-num">FINDING 01</div>
+      <div class="f-title">Infrastructure spending is accelerating , and it's concentrated geographically</div>
+      <div class="f-body">IIJA disbursements shifted into active project execution in late 2025, producing a measurable step-change in infrastructure spend visible in the Census C30 data. The South and West regions collectively account for 63% of total construction activity, anchored by Texas at $198B and California at $187B. The more strategically interesting signal is the Midwest: smaller in absolute dollars at $398B but growing fastest at +6.8% YoY, as Illinois, Ohio, and Michigan highway programs ramp simultaneously. CAT Digital's current dealer analytics coverage is thinner in the Midwest relative to population-adjusted spend, making it the clearest white-space opportunity in the network.</div>
+      <div class="stat-row">
+        <div class="stat"><div class="stat-val">$821B</div><div class="stat-lbl">South region spend</div><div class="stat-d up">↑ 5.8% YoY</div></div>
+        <div class="stat"><div class="stat-val">$512B</div><div class="stat-lbl">West region spend</div><div class="stat-d up">↑ 6.2% YoY</div></div>
+        <div class="stat"><div class="stat-val">+6.8%</div><div class="stat-lbl">Midwest YoY growth</div><div class="stat-d up">Fastest growing</div></div>
+        <div class="stat"><div class="stat-val">38.6%</div><div class="stat-lbl">Infrastructure share</div><div class="stat-d up">↑ 2.3 pp YoY</div></div>
+      </div>
+      <div class="leg" style="margin-top:14px">
+        <span><span class="ls" style="background:#378ADD"></span>Other spend</span>
+        <span><span class="ls" style="background:#378ADD;opacity:0.4"></span>Infrastructure spend</span>
+      </div>
+      <div style="position:relative;width:100%;height:160px"><canvas id="r1" role="img" aria-label="Stacked bar chart showing infrastructure share of total spend growing from 2023 to 2026">Infrastructure share trend.</canvas></div>
+      <div class="annot"><span class="annot-icon">ℹ</span><span>Infrastructure share crossed 38% in Q3 2025, coinciding with the first major wave of IIJA project starts. The trend is projected to continue through 2027 as multi-year highway and bridge contracts move into active construction phases.</span></div>
+    </div>
+
+    <div class="finding">
+      <div class="f-num">FINDING 02</div>
+      <div class="f-title">Earthmoving equipment demand is the clearest product signal</div>
+      <div class="f-body">Across all equipment categories, earthmoving shows the strongest demand acceleration at +9.2% YoY, directly correlated with the infrastructure project mix driving spend: road grading, site preparation, and utility trenching all require earthmoving as the primary asset. This is CAT's highest-volume product line, which means the demand signal translates directly into dealer inventory decisions, telematics onboarding opportunities, and equipment management platform engagement. Lifting equipment follows at +7.8%, driven by vertical commercial and industrial construction. Paving and compaction lag at +6.1% and +4.4%, consistent with their role as completion-phase assets that enter the field after earthmoving project starts.</div>
+      <div class="leg">
+        <span><span class="ls" style="background:rgba(55,138,221,0.3)"></span>2025</span>
+        <span><span class="ls" style="background:#378ADD"></span>2026</span>
+      </div>
+      <div style="position:relative;width:100%;height:160px"><canvas id="r2" role="img" aria-label="Grouped bar chart showing earthmoving demand at +9.2% YoY in 2026, highest of all categories">Equipment demand by category.</canvas></div>
+      <div class="annot"><span class="annot-icon">ℹ</span><span>Earthmoving demand acceleration from +7.1% in 2025 to +9.2% in 2026 represents the largest single-year gain in the dataset. Compaction equipment's comparatively modest growth (+4.4%) reflects a lagging indicator of project completion phases rather than project starts.</span></div>
+    </div>
+
+    <div class="finding">
+      <div class="f-num">FINDING 03</div>
+      <div class="f-title">Fleet utilization dip is a leading indicator for aftermarket revenue</div>
+      <div class="f-body">Average fleet utilization declined 1.4 pp QoQ to 72.1% despite a strong demand environment, which initially reads as contradictory. The explanation is sequencing: IIJA project starts require equipment purchases 2 to 3 quarters before active machine hours ramp, creating a temporary inventory overhang as newly acquired assets sit in staging yards awaiting project mobilization. Historically this utilization pattern precedes a sharp aftermarket surge as those assets enter heavy use cycles and require parts, service, and extended warranty coverage. CAT Digital's aftermarket leads and insights platform is built exactly for this scenario, but the window for proactive outreach is narrow. Once utilization recovers to the 76 to 78% range, the service contract conversation shifts from proactive to reactive.</div>
+      <div class="stat-row">
+        <div class="stat"><div class="stat-val">72.1%</div><div class="stat-lbl">Avg. fleet utilization</div><div class="stat-d dn">↓ 1.4 pp QoQ</div></div>
+        <div class="stat"><div class="stat-val">847</div><div class="stat-lbl">Active dealer markets</div><div class="stat-d up">↑ 23 QoQ</div></div>
+        <div class="stat"><div class="stat-val">2 to 3 qtrs</div><div class="stat-lbl">Aftermarket lag window</div><div class="stat-d" style="color:#888">Historical avg.</div></div>
+      </div>
+      <div class="leg" style="margin-top:14px">
+        <span><span class="ls" style="background:#378ADD"></span>Fleet utilization %</span>
+        <span><span class="ls" style="background:#FFCD11"></span>Target threshold (76%)</span>
+      </div>
+      <div style="position:relative;width:100%;height:140px"><canvas id="r3" role="img" aria-label="Line chart showing fleet utilization declining from 74.8% in Q1 2025 to 72.1% in Q1 2026">Fleet utilization trend.</canvas></div>
+    </div>
+
+    <div class="rec-box">
+      <div class="rec-header">Recommendations for CAT Digital product and analytics teams</div>
+      <div class="rec-item"><div class="rec-num">1</div><div class="rec-text"><strong>Expand dealer BI reporting cadence in the Midwest.</strong> Illinois, Ohio, and Michigan are simultaneously ramping IIJA highway programs and represent the highest-growth, lowest-coverage opportunity in the CAT Digital network. Adding Midwest-specific KPI views to the dealer analytics dashboard and scheduling quarterly business reviews with the top 20 Midwest dealers would capture this window before competitors establish a reporting relationship first.</div></div>
+      <div class="rec-item"><div class="rec-num">2</div><div class="rec-text"><strong>Lead with earthmoving telematics in new dealer onboarding.</strong> With earthmoving demand up 9.2% and directly tied to the infrastructure project types dominating 2026 spend, it is the highest-value entry point for the equipment management platform. Dealers acquiring new earthmoving assets right now are the most receptive audience for telematics onboarding conversations. Onboarding materials should foreground utilization reporting and idle-time alerts as the primary value proposition.</div></div>
+      <div class="rec-item"><div class="rec-num">3</div><div class="rec-text"><strong>Activate aftermarket outreach now, before utilization rebounds.</strong> The 72.1% fleet utilization reading is a 2 to 3 quarter leading indicator for parts and service demand. CAT Digital's aftermarket leads platform should immediately flag all assets below 65% utilization for dealer outreach, prioritizing assets acquired in the last 6 months in high-infrastructure markets. The proactive service contract positioning window closes when utilization recovers above 76%.</div></div>
+    </div>
+  </div>
+
+  <div class="footer-note">
+    <span>Sivaram Konasani · Finance &amp; Business Analytics · Indiana University Kelley School of Business</span>
+    <span>Sources: US Census Bureau C30 · BLS PPI</span>
+  </div>
+</div>
+
+<script>
+new Chart(document.getElementById('r1'),{type:'bar',data:{labels:['Q1 23','Q2 23','Q3 23','Q4 23','Q1 24','Q2 24','Q3 24','Q4 24','Q1 25','Q2 25','Q3 25','Q4 25','Q1 26'],datasets:[{label:'Other',data:[1148,1154,1160,1165,1215,1219,1222,1226,1228,1232,1235,1238,1283],backgroundColor:'rgba(55,138,221,0.15)',borderWidth:0,stack:'s'},{label:'Infrastructure',data:[672,678,686,692,730,744,756,769,782,796,820,824,807],backgroundColor:'#378ADD',borderWidth:0,stack:'s'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>' '+c.dataset.label+': $'+c.parsed.y+'B'}}},scales:{x:{ticks:{font:{size:10},maxTicksLimit:8,maxRotation:0},grid:{display:false}},y:{ticks:{font:{size:10},callback:v=>'$'+v+'B'},grid:{color:'rgba(0,0,0,0.06)'},stacked:true}}}});
+new Chart(document.getElementById('r2'),{type:'bar',data:{labels:['Earthmoving','Lifting','Paving','Compaction'],datasets:[{label:'2025',data:[7.1,6.2,5.0,3.8],backgroundColor:'rgba(55,138,221,0.3)',borderWidth:0},{label:'2026',data:[9.2,7.8,6.1,4.4],backgroundColor:'#378ADD',borderWidth:0}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>' '+c.dataset.label+': +'+c.parsed.y.toFixed(1)+'%'}}},scales:{x:{ticks:{font:{size:10}},grid:{display:false}},y:{ticks:{font:{size:10},callback:v=>'+'+v+'%'},grid:{color:'rgba(0,0,0,0.06)'}}}}});
+new Chart(document.getElementById('r3'),{type:'line',data:{labels:['Q1 25','Q2 25','Q3 25','Q4 25','Q1 26'],datasets:[{label:'Utilization',data:[74.8,74.2,73.9,73.1,72.1],borderColor:'#378ADD',backgroundColor:'rgba(55,138,221,0.06)',borderWidth:2,pointRadius:4,pointBackgroundColor:'#378ADD',fill:true,tension:0.3},{label:'Target',data:[76,76,76,76,76],borderColor:'#FFCD11',borderWidth:1.5,borderDash:[4,3],pointRadius:0}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>' '+c.dataset.label+': '+c.parsed.y.toFixed(1)+'%'}}},scales:{x:{ticks:{font:{size:11}},grid:{display:false}},y:{min:70,max:78,ticks:{font:{size:10},callback:v=>v+'%'},grid:{color:'rgba(0,0,0,0.06)'}}}}});
+</script>
+</body>
+</html>

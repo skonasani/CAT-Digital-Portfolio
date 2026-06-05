@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CAT Digital , Business Requirements Document</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f5f5f3;color:#1a1a1a;padding:2rem}
+.page{max-width:900px;margin:0 auto;background:#fff;border-radius:12px;border:1px solid #e5e5e2;overflow:hidden}
+.brd-top{padding:1.25rem 1.5rem 1rem;border-bottom:1px solid #e5e5e2}
+.tag{font-size:10px;font-weight:600;padding:2px 9px;border-radius:4px;margin-right:4px;display:inline-block}
+.tag-cat{background:#FFCD11;color:#1A1A1A}.tag-stat{background:#E6F1FB;color:#0C447C}.tag-ver{background:#EAF3DE;color:#27500A}
+.brd-title{font-size:18px;font-weight:700;margin:10px 0 10px;line-height:1.35}
+.meta-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}
+.meta-item{font-size:12px;color:#666}.meta-item strong{color:#1a1a1a;font-weight:600;display:block;margin-bottom:1px}
+.section{padding:1rem 1.5rem;border-bottom:1px solid #e5e5e2}.section:last-child{border-bottom:none}
+.sec-label{font-size:10px;font-weight:700;color:#888;letter-spacing:0.08em;margin-bottom:8px}
+.prose{font-size:13px;color:#444;line-height:1.75}
+.sh-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px}
+.sh-card{background:#f5f5f3;border-radius:8px;padding:0.75rem 1rem}
+.sh-name{font-size:13px;font-weight:600;margin-bottom:2px}.sh-role{font-size:11px;color:#666;margin-bottom:8px}
+.sh-need{font-size:12px;color:#555;line-height:1.6;padding-top:8px;border-top:1px solid #e5e5e2}
+.req-table{width:100%;border-collapse:collapse;font-size:12px;margin-top:10px}
+.req-table th{text-align:left;font-weight:600;color:#666;padding:6px 8px;border-bottom:1px solid #e5e5e2;font-size:11px}
+.req-table td{padding:7px 8px;border-bottom:1px solid #e5e5e2;color:#1a1a1a;vertical-align:top}
+.req-table tr:last-child td{border-bottom:none}
+.pill{font-size:10px;padding:2px 8px;border-radius:10px;white-space:nowrap;font-weight:600}
+.p-must{background:#E6F1FB;color:#0C447C}.p-should{background:#EAF3DE;color:#27500A}.p-could{background:#FAEEDA;color:#633806}
+.metric-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:10px}
+.mc{background:#f5f5f3;border-radius:8px;padding:0.75rem 1rem}
+.mc-name{font-size:12px;font-weight:600;margin-bottom:4px}
+.mc-def{font-size:11px;color:#555;line-height:1.5;margin-bottom:6px}
+.mc-src{font-size:10px;color:#888;padding-top:6px;border-top:1px solid #e5e5e2}
+.ac-item{display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px solid #e5e5e2}
+.ac-item:last-child{border-bottom:none}
+.ac-check{width:16px;height:16px;border-radius:3px;background:#f5f5f3;border:1px solid #d0d0cc;flex-shrink:0;margin-top:2px}
+.ac-text{font-size:12px;color:#444;line-height:1.6}.ac-text strong{color:#1a1a1a;font-weight:600}
+.risk-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px}
+.risk-card{border:1px solid #e5e5e2;border-radius:8px;padding:0.75rem 1rem}
+.risk-label{font-size:11px;font-weight:700;margin-bottom:6px}
+.risk-high{color:#A32D2D}.risk-med{color:#854F0B}
+.risk-text{font-size:12px;color:#444;line-height:1.6}
+.risk-mit{font-size:11px;color:#666;margin-top:6px;padding-top:6px;border-top:1px solid #e5e5e2}
+.footer-note{padding:1rem 1.5rem;border-top:1px solid #e5e5e2;font-size:11px;color:#888;display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px}
+@media(max-width:600px){.sh-grid,.risk-row{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="brd-top">
+    <div><span class="tag tag-cat">CAT DIGITAL</span><span class="tag tag-stat">Status: approved</span><span class="tag tag-ver">v1.2</span></div>
+    <div class="brd-title">Business requirements document , dealer performance analytics dashboard</div>
+    <div class="meta-grid">
+      <div class="meta-item"><strong>Document owner</strong>Sivaram Konasani</div>
+      <div class="meta-item"><strong>Requested by</strong>VP, Equipment Management</div>
+      <div class="meta-item"><strong>Target delivery</strong>Q3 2026</div>
+      <div class="meta-item"><strong>Priority</strong>High</div>
+      <div class="meta-item"><strong>Last updated</strong>June 2026</div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="sec-label">01 · BUSINESS CONTEXT</div>
+    <div class="prose">CAT Digital's dealer network generates equipment telemetry, utilization, and sales data across 847 active markets spanning four US regions. Currently, regional managers receive this data through static monthly Excel reports, creating a 3 to 5 week lag between when signals appear in the data and when business decisions can be made. In a market where IIJA-driven equipment demand is accelerating and fleet utilization dips are opening a narrow aftermarket outreach window, that lag is a competitive liability. This initiative replaces static reporting with a self-serve analytics dashboard that gives regional managers and dealer principals real-time visibility into the metrics that drive CAT's two highest-priority revenue opportunities: equipment management platform adoption and aftermarket parts and service conversion.</div>
+  </div>
+  <div class="section">
+    <div class="sec-label">02 · STAKEHOLDERS AND NEEDS</div>
+    <div class="sh-grid">
+      <div class="sh-card"><div class="sh-name">Regional sales managers</div><div class="sh-role">Primary users · 47 across 4 regions</div><div class="sh-need">Need weekly dealer performance rankings, YoY revenue variance by market, and equipment utilization alerts to prioritize dealer outreach. Currently spend 4+ hrs/week pulling data manually.</div></div>
+      <div class="sh-card"><div class="sh-name">CAT Digital product owners</div><div class="sh-role">Decision makers · 8 stakeholders</div><div class="sh-need">Need aggregate metrics on platform engagement, equipment hours logged, and aftermarket lead conversion rates to inform product roadmap prioritization.</div></div>
+      <div class="sh-card"><div class="sh-name">Dealer principals</div><div class="sh-role">External users · ~200 dealer locations</div><div class="sh-need">Need their own dealership's performance benchmarked against regional peers, with fleet utilization trends and service contract expiry alerts.</div></div>
+      <div class="sh-card"><div class="sh-name">Data engineering team</div><div class="sh-role">Technical partners · 6 engineers</div><div class="sh-need">Need clearly defined metric logic, data lineage documentation, and acceptable refresh latency SLAs before building the Snowflake pipeline that feeds the dashboard.</div></div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="sec-label">03 · FUNCTIONAL REQUIREMENTS</div>
+    <table class="req-table">
+      <thead><tr><th>ID</th><th>Requirement</th><th style="width:80px">Priority</th><th style="width:110px">Source</th></tr></thead>
+      <tbody>
+        <tr><td style="color:#888;font-weight:600">FR-01</td><td>Dashboard must display fleet utilization rate at dealer, regional, and national level with drill-down capability</td><td><span class="pill p-must">Must have</span></td><td style="color:#888">Regional mgrs</td></tr>
+        <tr><td style="color:#888;font-weight:600">FR-02</td><td>YoY revenue and equipment hours variance calculable for any user-selected date range (min: monthly, max: 3 years)</td><td><span class="pill p-must">Must have</span></td><td style="color:#888">Product owners</td></tr>
+        <tr><td style="color:#888;font-weight:600">FR-03</td><td>Automated alerts when dealer utilization falls below configurable threshold (default: 65%) for 2+ consecutive weeks</td><td><span class="pill p-must">Must have</span></td><td style="color:#888">Aftermarket team</td></tr>
+        <tr><td style="color:#888;font-weight:600">FR-04</td><td>Regional peer benchmarking , dealer principals can view their metrics against anonymized regional median</td><td><span class="pill p-should">Should have</span></td><td style="color:#888">Dealer principals</td></tr>
+        <tr><td style="color:#888;font-weight:600">FR-05</td><td>Export to PDF and CSV for all views; exportable data must match displayed metrics exactly</td><td><span class="pill p-should">Should have</span></td><td style="color:#888">Regional mgrs</td></tr>
+        <tr><td style="color:#888;font-weight:600">FR-06</td><td>Natural language search to find dealer by name, market, or equipment category</td><td><span class="pill p-could">Could have</span></td><td style="color:#888">All users</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="section">
+    <div class="sec-label">04 · METRIC DEFINITIONS</div>
+    <div class="metric-row">
+      <div class="mc"><div class="mc-name">Fleet utilization rate</div><div class="mc-def">Engine hours used ÷ total available hours × 100. Per asset, aggregated by dealer.</div><div class="mc-src">Source: equipment telematics → stg.asset_hours</div></div>
+      <div class="mc"><div class="mc-name">YoY revenue variance</div><div class="mc-def">(Current − prior year same period) ÷ prior year × 100. Null if prior year unavailable.</div><div class="mc-src">Source: dealer sales system → stg.dealer_transactions</div></div>
+      <div class="mc"><div class="mc-name">Aftermarket lead score</div><div class="mc-def">Composite of utilization dip, asset age, and service contract expiry proximity. Scale 0–100.</div><div class="mc-src">Source: analytics.aftermarket_signals</div></div>
+      <div class="mc"><div class="mc-name">Equipment demand index</div><div class="mc-def">Indexed to 100 at Jan 2023. Weighted avg of new unit orders + rental starts by category.</div><div class="mc-src">Source: BLS PPI + internal order data → stg.demand_signals</div></div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="sec-label">05 · ACCEPTANCE CRITERIA</div>
+    <div class="ac-item"><div class="ac-check"></div><div class="ac-text"><strong>Data freshness:</strong> all KPIs reflect data no older than 24 hours. Pipeline SLA: Snowflake tables updated by 7AM CT daily.</div></div>
+    <div class="ac-item"><div class="ac-check"></div><div class="ac-text"><strong>Metric accuracy:</strong> fleet utilization rate matches source telematics within ±0.1pp for all dealer-level records in UAT dataset.</div></div>
+    <div class="ac-item"><div class="ac-check"></div><div class="ac-text"><strong>Performance:</strong> dashboard initial load ≤ 3 seconds; drill-down interactions ≤ 1.5 seconds at p95 under 50 concurrent users.</div></div>
+    <div class="ac-item"><div class="ac-check"></div><div class="ac-text"><strong>Alert delivery:</strong> utilization threshold alerts delivered via email within 15 minutes of trigger condition being met.</div></div>
+    <div class="ac-item"><div class="ac-check"></div><div class="ac-text"><strong>Access control:</strong> dealer principals may only view their own dealership's data and anonymized regional benchmarks , no cross-dealer data leakage verified in security review.</div></div>
+  </div>
+  <div class="section">
+    <div class="sec-label">06 · RISKS AND MITIGATIONS</div>
+    <div class="risk-row">
+      <div class="risk-card"><div class="risk-label risk-high">⚠ High: data quality</div><div class="risk-text">Telematics data completeness varies by dealer hardware generation. Older units report at 30-minute intervals versus real-time for newer units, creating uneven metric accuracy across the dealer base.</div><div class="risk-mit">Mitigation: add data_completeness_pct field to all dealer records and surface a warning badge in the UI when completeness falls below 80%.</div></div>
+      <div class="risk-card"><div class="risk-label risk-high">⚠ High: adoption</div><div class="risk-text">Regional managers have used Excel-based reports for 7 or more years. Transitioning to a self-serve dashboard requires both behavior change and targeted training, particularly for managers in regions with lower digital tool adoption.</div><div class="risk-mit">Mitigation: co-design sessions with 3 regional manager champions before build begins; phased rollout starting with 2 pilot regions before full deployment.</div></div>
+      <div class="risk-card"><div class="risk-label risk-med">◈ Medium: metric alignment</div><div class="risk-text">Finance and operations teams currently use different YoY revenue definitions. The inconsistency will surface immediately when the dashboard shows divergent numbers and erode stakeholder trust in the data.</div><div class="risk-mit">Mitigation: convene a metric governance working group before the build sprint begins and document the agreed definitions in section 04 of this BRD.</div></div>
+      <div class="risk-card"><div class="risk-label risk-med">◈ Medium: scope creep</div><div class="risk-text">Stakeholder interviews surfaced 14 features beyond the MVP scope. Without strict prioritization, the delivery timeline extends from Q3 2026 to Q1 2027 and the aftermarket outreach window may close before the platform is in dealers' hands.</div><div class="risk-mit">Mitigation: MoSCoW prioritization enforced as documented in section 03; all "could have" features explicitly deferred to the v2 backlog.</div></div>
+    </div>
+  </div>
+  <div class="footer-note">
+    <span>Sivaram Konasani · Finance &amp; Business Analytics · Indiana University Kelley School of Business</span>
+    <span>CAT Digital · Dealer Analytics Initiative · Q2 2026</span>
+  </div>
+</div>
+</body>
+</html>

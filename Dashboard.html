@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CAT Digital , Construction Market Intelligence Dashboard</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f5f5f3;color:#1a1a1a;padding:2rem}
+  .page{max-width:960px;margin:0 auto;background:#fff;border-radius:12px;border:1px solid #e5e5e2;overflow:hidden}
+  .db-header{padding:1.25rem 1.5rem;border-bottom:1px solid #e5e5e2;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+  .cat-tag{background:#FFCD11;color:#1A1A1A;font-size:10px;font-weight:600;padding:2px 9px;border-radius:4px;letter-spacing:0.04em}
+  .db-title{font-size:16px;font-weight:600;margin-top:4px}
+  .db-sub{font-size:12px;color:#666;margin-top:2px}
+  .live{color:#3B6D11;font-size:11px}
+  .kgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;padding:1.25rem 1.5rem}
+  .kc{background:#f5f5f3;border-radius:8px;padding:1rem}
+  .kl{font-size:11px;color:#666;margin-bottom:4px}
+  .kv{font-size:22px;font-weight:600;line-height:1.1}
+  .kd{font-size:11px;margin-top:3px}
+  .up{color:#3B6D11}.dn{color:#A32D2D}
+  .sec{padding:0 1.5rem 1.25rem}
+  .sh{font-size:13px;font-weight:600;margin-bottom:4px}
+  .sm{font-size:11px;color:#666;margin-bottom:10px}
+  .crow{display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:0 1.5rem 1.25rem}
+  .cb{background:#fff;border:1px solid #e5e5e2;border-radius:12px;padding:1rem}
+  .leg{display:flex;flex-wrap:wrap;gap:12px;font-size:11px;color:#666;margin-bottom:8px}
+  .ls{width:9px;height:9px;border-radius:2px;display:inline-block;margin-right:3px;vertical-align:middle}
+  .insight{background:#f5f5f3;border-left:3px solid #FFCD11;border-radius:0 8px 8px 0;padding:0.75rem 1rem;margin:0 1.5rem 0.75rem}
+  .it{font-size:13px;font-weight:600;margin-bottom:3px}
+  .ib{font-size:12px;color:#555;line-height:1.6}
+  .footer-note{padding:1rem 1.5rem;border-top:1px solid #e5e5e2;font-size:11px;color:#888;display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px}
+  @media(max-width:600px){.crow{grid-template-columns:1fr}.db-header{flex-direction:column}}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="db-header">
+    <div>
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px"><span class="cat-tag">CAT DIGITAL</span></div>
+      <div class="db-title">US Construction Equipment Market Intelligence</div>
+      <div class="db-sub">Prepared by Sivaram Konasani, Q1 2026, Data: US Census Bureau C30 Series, Equipment demand index: BLS PPI</div>
+    </div>
+    <div style="text-align:right;font-size:11px;color:#666">Updated Jun 2026<br><span class="live">● Current</span></div>
+  </div>
+
+  <div class="kgrid">
+    <div class="kc"><div class="kl">Total construction spend</div><div class="kv">$2.09T</div><div class="kd up">↑ 4.2% YoY</div></div>
+    <div class="kc"><div class="kl">Equipment demand index</div><div class="kv">118.4</div><div class="kd up">↑ 7.1% YoY</div></div>
+    <div class="kc"><div class="kl">Infrastructure share</div><div class="kv">38.6%</div><div class="kd up">↑ 2.3 pp YoY</div></div>
+    <div class="kc"><div class="kl">Fleet utilization</div><div class="kv">72.1%</div><div class="kd dn">↓ 1.4 pp QoQ</div></div>
+    <div class="kc"><div class="kl">Active dealer markets</div><div class="kv">847</div><div class="kd up">↑ 23 QoQ</div></div>
+  </div>
+
+  <div class="sec">
+    <div class="sh">Monthly construction spending , 2024 to 2026</div>
+    <div class="leg">
+      <span><span class="ls" style="background:#378ADD"></span>Total spend ($B)</span>
+      <span><span class="ls" style="background:#639922;height:3px;margin-top:3px"></span>Infrastructure only</span>
+    </div>
+    <div style="position:relative;width:100%;height:220px">
+      <canvas id="c1" role="img" aria-label="Line chart showing US construction spending rising from $1.94T in Jan 2024 to $2.09T in Jun 2026">Monthly spend trend.</canvas>
+    </div>
+  </div>
+
+  <div class="crow">
+    <div class="cb">
+      <div class="sh">Spend by segment , 2026 YTD</div>
+      <div class="sm">% of total</div>
+      <div class="leg">
+        <span><span class="ls" style="background:#378ADD"></span>Infrastructure 38.6%</span>
+        <span><span class="ls" style="background:#639922"></span>Residential 27.1%</span>
+        <span><span class="ls" style="background:#FFCD11"></span>Commercial 19.4%</span>
+        <span><span class="ls" style="background:#888780"></span>Industrial 14.9%</span>
+      </div>
+      <div style="position:relative;width:100%;height:180px"><canvas id="c2" role="img" aria-label="Donut chart of spend by segment">Segment shares.</canvas></div>
+    </div>
+    <div class="cb">
+      <div class="sh">Equipment demand , YoY change</div>
+      <div class="sm">By category, 2025 vs 2026</div>
+      <div class="leg">
+        <span><span class="ls" style="background:rgba(55,138,221,0.35)"></span>2025</span>
+        <span><span class="ls" style="background:#378ADD"></span>2026</span>
+      </div>
+      <div style="position:relative;width:100%;height:180px"><canvas id="c3" role="img" aria-label="Grouped bar chart of equipment demand change by category">Equipment demand.</canvas></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sh">Regional spend , Q1 2026</div>
+    <div class="leg">
+      <span><span class="ls" style="background:#378ADD"></span>Spend ($B)</span>
+      <span><span class="ls" style="background:#FFCD11"></span>YoY growth %</span>
+    </div>
+    <div style="position:relative;width:100%;height:200px"><canvas id="c4" role="img" aria-label="Horizontal bar chart of spend by US region">Regional spend.</canvas></div>
+  </div>
+
+  <div class="sh" style="padding:0 1.5rem;margin-bottom:0.75rem">Key insights</div>
+  <div class="insight"><div class="it">Infrastructure tailwind: IIJA disbursements are accelerating into 2026</div><div class="ib">Infrastructure segment share expanded 2.3 pp YoY to 38.6%, its highest level in a decade. Earthmoving demand is up 9.2%, CAT's core product category, and the South and West regions represent 63% of total spend. The Midwest is the fastest-growing region at +6.8% YoY and is currently underweighted in dealer analytics coverage.</div></div>
+  <div class="insight"><div class="it">Fleet utilization dip signals a near-term aftermarket opportunity</div><div class="ib">Utilization declined to 72.1% despite strong demand, consistent with new fleet acquisitions staging ahead of IIJA project mobilization. This is a 2 to 3 quarter leading indicator for parts demand and service contract upsell. Proactive dealer outreach on idle assets should begin before utilization recovers above 76%.</div></div>
+  <div class="insight" style="margin-bottom:1.5rem"><div class="it">Earthmoving is the highest-value onboarding entry point for CAT Digital</div><div class="ib">Earthmoving leads all equipment categories in demand growth at +9.2% YoY, directly tied to the road grading, site prep, and utility trenching projects driving infrastructure spend. Dealers acquiring earthmoving assets now are the most receptive audience for telematics and equipment management platform conversations.</div></div>
+
+  <div class="footer-note">
+    <span>Sivaram Konasani · Finance &amp; Business Analytics · Indiana University Kelley School of Business</span>
+    <span>Sources: US Census Bureau C30 · BLS PPI</span>
+  </div>
+</div>
+
+<script>
+const months=['Jan 24','Mar 24','May 24','Jul 24','Sep 24','Nov 24','Jan 25','Mar 25','May 25','Jul 25','Sep 25','Nov 25','Jan 26','Mar 26','May 26'];
+const total=[1945,1958,1963,1978,1990,1995,2010,2022,2028,2047,2055,2062,2074,2083,2090];
+const infra=[730,738,744,756,764,769,782,791,796,812,818,824,836,842,807];
+new Chart(document.getElementById('c1'),{type:'line',data:{labels:months,datasets:[{label:'Total',data:total,borderColor:'#378ADD',backgroundColor:'rgba(55,138,221,0.06)',borderWidth:2,pointRadius:2,fill:true,tension:0.3},{label:'Infrastructure',data:infra,borderColor:'#639922',backgroundColor:'transparent',borderWidth:1.5,borderDash:[4,3],pointRadius:0,tension:0.3}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>' $'+c.parsed.y+'B'}}},scales:{x:{ticks:{font:{size:10},maxTicksLimit:8,maxRotation:0},grid:{display:false}},y:{ticks:{font:{size:10},callback:v=>'$'+v+'B'},grid:{color:'rgba(0,0,0,0.06)'}}}}});
+new Chart(document.getElementById('c2'),{type:'doughnut',data:{labels:['Infrastructure','Residential','Commercial','Industrial'],datasets:[{data:[38.6,27.1,19.4,14.9],backgroundColor:['#378ADD','#639922','#FFCD11','#888780'],borderWidth:0}]},options:{responsive:true,maintainAspectRatio:false,cutout:'62%',plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>' '+c.label+': '+c.parsed.toFixed(1)+'%'}}}}});
+new Chart(document.getElementById('c3'),{type:'bar',data:{labels:['Earthmoving','Lifting','Paving','Compaction'],datasets:[{label:'2025',data:[7.1,6.2,5.0,3.8],backgroundColor:'rgba(55,138,221,0.3)',borderWidth:0},{label:'2026',data:[9.2,7.8,6.1,4.4],backgroundColor:'#378ADD',borderWidth:0}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>' '+c.dataset.label+': +'+c.parsed.y.toFixed(1)+'%'}}},scales:{x:{ticks:{font:{size:10}},grid:{display:false}},y:{ticks:{font:{size:10},callback:v=>'+'+v+'%'},grid:{color:'rgba(0,0,0,0.06)'}}}}});
+new Chart(document.getElementById('c4'),{type:'bar',data:{labels:['South','West','Midwest','Northeast'],datasets:[{label:'Spend',data:[821,512,398,362],backgroundColor:'#378ADD',borderWidth:0,yAxisID:'y'},{label:'YoY %',data:[5.8,6.2,6.8,3.4],type:'line',borderColor:'#FFCD11',backgroundColor:'transparent',borderWidth:2.5,pointRadius:5,pointBackgroundColor:'#FFCD11',yAxisID:'y1'}]},options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',plugins:{legend:{display:false}},scales:{x:{ticks:{font:{size:10},callback:v=>'$'+v+'B'},grid:{display:false}},y:{ticks:{font:{size:11}},grid:{display:false}},y1:{display:false,position:'right',min:0,max:12}}}});
+</script>
+</body>
+</html>
